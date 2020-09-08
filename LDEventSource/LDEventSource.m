@@ -272,7 +272,8 @@ didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSe
 - (void)_dispatchEvent:(LDEvent *)event type:(NSString * const)type
 {
     NSArray *eventHandlers = self.listeners[type];
-    for (LDEventSourceEventHandler handler in eventHandlers) {
+    for (int i=0; i < eventHandlers.count; i++) {
+        LDEventSourceEventHandler handler = eventHandlers[i];
         dispatch_async(connectionQueue, ^{
             handler(event);
         });
