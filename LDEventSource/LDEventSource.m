@@ -259,7 +259,9 @@ didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSe
     self.session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]
                                                  delegate:self
                                             delegateQueue:[NSOperationQueue currentQueue]];
-    
+    [self.session.configuration.HTTPCookieStorage setCookies:self.cookies
+                                                      forURL:self.eventURL
+                                             mainDocumentURL:NULL];
     self.eventSourceTask = [self.session dataTaskWithRequest:request];
     [self.eventSourceTask resume];
     
