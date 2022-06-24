@@ -47,6 +47,9 @@ typedef void (^LDEventSourceEventHandler)(LDEvent * _Nullable event);
 /// Connect to and receive Server-Sent Events (SSEs).
 @interface LDEventSource : NSObject
 
+// Cookies used in requests.
+@property (nonatomic, strong) NSArray<NSHTTPCookie *> *cookies;
+
 /// Returns a new instance of EventSource with the specified URL.
 ///
 /// @param URL The URL of the EventSource.
